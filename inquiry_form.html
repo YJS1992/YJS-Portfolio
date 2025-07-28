@@ -1,499 +1,71 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>데이브의 포트폴리오</title>
-    <!-- 구글 폰트 링크 (선택 사항) -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 아이콘 라이브러리 링크 (선택 사항) [【3】](https://determination.tistory.com/entry/HTMLCSSJavaScript%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B0%9C%EC%9D%B8-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* 기본 스타일 초기화 [【3】](https://determination.tistory.com/entry/HTMLCSSJavaScript%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B0%9C%EC%9D%B8-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01) */
-        body, h1, h2, h3, p, ul, li, a, form, input, textarea, button {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Noto Sans KR', sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
-        }
-
-        /* 헤더 스타일 */
-        header {
-            background: #333;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
-        }
-
-        header .container {
-            max-width: 960px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            margin-right: auto; /* 제목을 왼쪽으로 정렬 */
-        }
-
-        nav ul {
-            list-style: none;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #66ccff;
-        }
-
-        /* 공통 컨테이너 스타일 */
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* 섹션별 공통 스타일 */
-        section {
-            padding: 40px 0;
-            background: #fff;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        section h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-            font-size: 2rem;
-        }
-
-        /* 히어로 섹션 */
-        #hero {
-            background: linear-gradient(to right, #6dd5ed, #2193b0);
-            color: #fff;
-            text-align: center;
-            padding: 100px 20px;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        #hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-        }
-
-        #hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-        }
-
-        #hero .btn {
-            display: inline-block;
-            background: #fff;
-            color: #2193b0;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-
-        #hero .btn:hover {
-            background: #e0e0e0;
-        }
-
-        /* About Me 섹션 */
-        #about .about-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        #about .about-content img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #eee;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        #about .text-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        /* Skills 섹션 */
-        #skills ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap; /* 창 크기가 작아지면 아래로 내려옴 [【1】](https://velog.io/@hamham/HTML%EA%B3%BC-CSS%EB%A1%9C-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4-%EB%A7%8C%EB%93%A4%EA%B8%B0-ver.2) */
-            justify-content: center;
-            gap: 20px;
-        }
-
-        #skills ul li {
-            background: #f0f0f0;
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-weight: bold;
-            color: #555;
-            transition: background 0.3s ease;
-        }
-
-        #skills ul li:hover {
-            background: #ddd;
-        }
-
-        /* Projects 섹션 */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .project-item {
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .project-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
-        }
-
-        .project-item-content {
-            padding: 20px;
-        }
-
-        .project-item h3 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .project-item p {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .project-item .project-links a {
-            display: inline-block;
-            margin-right: 15px;
-            color: #2193b0;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .project-item .project-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Contact 섹션 */
-        #contact form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        #contact form label {
-            font-weight: bold;
-            color: #555;
-        }
-
-        #contact form input[type="text"],
-        #contact form input[type="email"],
-        #contact form textarea { /* 폼 속성 [【3】](https://determination.tistory.com/entry/HTMLCSSJavaScript%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B0%9C%EC%9D%B8-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01) */
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            width: 100%;
-            transition: border-color 0.3s ease;
-        }
-
-        #contact form input[type="text"]:focus,
-        #contact form input[type="email"]:focus,
-        #contact form textarea:focus {
-            border-color: #66ccff;
-            outline: none;
-        }
-
-        #contact form textarea {
-            resize: vertical; /* 텍스트 에어리어 세로 크기 조절 가능 */
-            min-height: 120px;
-        }
-
-        #contact form button[type="submit"] { /* 버튼 속성 [【3】](https://determination.tistory.com/entry/HTMLCSSJavaScript%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B0%9C%EC%9D%B8-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01) */
-            background: #2193b0;
-            color: #fff;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-
-        #contact form button[type="submit"]:hover {
-            background: #1a7c93;
-        }
-
-        /* 푸터 [【3】](https://determination.tistory.com/entry/HTMLCSSJavaScript%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B0%9C%EC%9D%B8-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01) */
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-        }
-
-        footer .social-links a {
-            color: #fff;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer .social-links a:hover {
-            color: #66ccff;
-        }
-
-        /* 반응형 디자인을 위한 미디어 쿼리 [【1】](https://velog.io/@hamham/HTML%EA%B3%BC-CSS%EB%A1%9C-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4-%EB%A7%8C%EB%93%A4%EA%B8%B0-ver.2) */
-        @media (max-width: 768px) { /* 창의 너비가 768px 이하일 때 [【1】](https://velog.io/@hamham/HTML%EA%B3%BC-CSS%EB%A1%9C-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4-%EB%A7%8C%EB%93%A4%EA%B8%B0-ver.2) */
-            header .container {
-                flex-direction: column;
-                padding: 10px 20px;
-            }
-
-            nav ul {
-                margin-top: 15px;
-                text-align: center;
-                width: 100%;
-            }
-
-            nav ul li {
-                margin: 0 10px;
-                display: block; /* 모바일에서 메뉴 세로로 정렬 */
-                margin-bottom: 10px;
-            }
-
-            #hero h1 {
-                font-size: 2.5rem;
-            }
-
-            #hero p {
-                font-size: 1.2rem;
-            }
-
-            #about .about-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            #about .about-content img {
-                margin-bottom: 20px;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr; /* 모바일에서는 프로젝트 한 줄에 하나씩 */
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Marketing Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 헤더 영역 -->
-    <header>
-        <div class="container">
-            <h1><a href="#hero" style="color: #fff; text-decoration: none;">데이브</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <h1>재성 양 – Performance Marketing Portfolio</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- 메인 컨텐츠 영역 -->
-    <main>
-        <!-- 히어로 섹션 (가장 위 큰 제목 부분) -->
-        <section id="hero">
-            <div class="container">
-                <h1>안녕하세요! 저는 데이브입니다 😎</h1>
-                <p>전략 분석과 투자에 진심인 프론트엔드 개발자 (or 디자이너/기획자 등 직무)</p>
-                <a href="#projects" class="btn">내 프로젝트 보기</a>
-            </div>
-        </section>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>퍼포먼스 마케터로서 Meta, TikTok, Google Ads 등 다양한 매체를 활용한 성과 중심 마케팅 캠페인을 운영해왔습니다. 데이터 기반 전략 설계와 실험 기반 운영을 통해 지속적인 개선을 만들어냅니다.</p>
+    <ul>
+      <li>광고 매체: Meta, TikTok, Google, Naver 등</li>
+      <li>툴: GA4, GTM, Google Sheets, Looker Studio, Zapier</li>
+      <li>스킬: A/B Testing, CPA/ROAS 개선, CRM 자동화, 리포팅 시스템 구축</li>
+    </ul>
+  </section>
 
-        <!-- About Me 섹션 -->
-        <section id="about" class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <img src="https://via.placeholder.com/200" alt="프로필 사진"> <!-- 프로필 사진 경로 넣어줘! -->
-                <div class="text-content">
-                    <p>
-                        저는 <span>투자 전략</span>과 <span>데이터 분석</span>에 깊은 관심을 가진 사람입니다.
-                        주식, 비트코인 거래 등 다양한 금융 시장을 분석하며 전략적 의사결정을 내리는 데 능숙합니다.
-                        특히 <span>마케팅 분석</span> 및 <span>재무 관리</span> 분야에서 새로운 도전과 성장을 추구하며,
-                        데이터를 기반으로 한 문제 해결 능력과 논리적인 사고를 중요하게 생각합니다.
-                        어떤 문제든 긍정적이고 즐거운 태도로 접근하며, 끊임없이 배우고 발전하는 것을 좋아합니다.
-                        저의 경험과 역량을 통해 <span>성장 가능성</span>을 창출하고 싶습니다.
-                    </p>
-                    <p>
-                        (여기에 데이브의 다른 장점이나 포부 등을 추가해줘! 관심사: 소비 관련 업종, 재무 관리, 마케팅 분석, 전략 분석 및 투자 전략, 비트코인 거래, 주식 투자, 암호화폐 거래, 정부 지원 정책 관련 주식)
-                    </p>
-                </div>
-            </div>
-        </section>
+  <section id="projects">
+    <h2>Key Projects</h2>
 
-        <!-- Skills 섹션 -->
-        <section id="skills" class="container">
-            <h2>Skills</h2>
-            <ul>
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>JavaScript</li>
-                <li>React (또는 다른 프레임워크)</li>
-                <li>Python</li>
-                <li>SQL</li>
-                <li>Git/GitHub</li>
-                <li>Figma (또는 다른 툴)</li>
-                <li>데이터 분석 (Numpy, Pandas 등)</li>
-                <li>전략 분석 (SWOT, Pestel 등)</li>
-                <li>재무 모델링</li>
-            </ul>
-        </section>
+    <article>
+      <h3>01. Meta Ads – ROAS 2배 성장 캠페인</h3>
+      <p>목표: 기존 ROAS 2.3 → 5.1 개선<br>
+      전략: 타겟 분할 + 크리에이티브 리마케팅 + 캠페인 구조 단순화<br>
+      결과: ROAS 121% 상승, CTR 36% 개선, CPA 42% 절감</p>
+      <a href="projects/meta-ads-roas-case.html">View Details →</a>
+    </article>
 
-        <!-- Projects 섹션 -->
-        <section id="projects" class="container">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <!-- 프로젝트 1 -->
-                <div class="project-item">
-                    <img src="https://via.placeholder.com/400x200?text=Project+1" alt="프로젝트 1 이미지">
-                    <div class="project-item-content">
-                        <h3>프로젝트 명 1: 투자 시뮬레이션 대시보드</h3>
-                        <p>
-                            다양한 투자 전략을 시뮬레이션하고 결과를 시각화한 대시보드입니다.
-                            데이터 분석과 UI/UX 최적화에 중점을 두었습니다.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> 프로젝트 링크</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
+    <article>
+      <h3>02. TikTok 광고 효율화 & 자동화</h3>
+      <p>Zapier를 통한 광고 성과 자동 리포팅 시스템 구축<br>
+      캠페인별 전환 데이터 슬랙 연동, 예산 변경 자동화 설정<br>
+      결과: 수작업 리포팅 소요 시간 80% 절감</p>
+      <a href="projects/tiktok-cpm-automation.html">View Details →</a>
+    </article>
 
-                <!-- 프로젝트 2 -->
-                <div class="project-item">
-                    <img src="https://via.placeholder.com/400x200?text=Project+2" alt="프로젝트 2 이미지">
-                    <div class="project-item-content">
-                        <h3>프로젝트 명 2: 암호화폐 거래 자동화 봇</h3>
-                        <p>
-                            파이썬으로 구현한 암호화폐 거래 봇입니다. 실시간 시장 데이터 분석과 자동 매매 기능을 포함합니다.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> 프로젝트 링크</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
+    <article>
+      <h3>03. GA4 기반 퍼널 설계 및 CRM 연동</h3>
+      <p>GA4 → GTM → CRM 이벤트 설계 및 리인게이지 전략 구성<br>
+      고객 세그먼트별 자동 알림 및 메시지 개인화 진행<br>
+      결과: 리텐션 +17%, 복귀 유저 전환율 +24%</p>
+      <a href="projects/crm-retention-flow.html">View Details →</a>
+    </article>
+  </section>
 
-                <!-- 프로젝트 3 -->
-                <div class="project-item">
-                    <img src="https://via.placeholder.com/400x200?text=Project+3" alt="프로젝트 3 이미지">
-                    <div class="project-item-content">
-                        <h3>프로젝트 명 3: 소비 데이터 분석 웹 앱</h3>
-                        <p>
-                            사용자의 소비 데이터를 입력받아 카테고리별 지출을 분석하고 그래프로 보여주는 웹 애플리케이션입니다.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> 프로젝트 링크</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>📧 Email: yourname@email.com</p>
+    <p>🔗 GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
+    <p>🔗 LinkedIn: <a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a></p>
+  </section>
 
-                <!-- 필요하면 프로젝트 더 추가해줘! -->
-            </div>
-        </section>
-
-        <!-- Contact 섹션 -->
-        <section id="contact" class="container">
-            <h2>Contact</h2>
-            <p style="text-align: center; margin-bottom: 25px; color: #666;">저에 대해 더 궁금하시거나 협업 제안이 있으시다면 언제든지 연락 주세요!</p>
-            <form action="mailto:your-email@example.com" method="post" enctype="text/plain"> <!-- 이메일 주소 바꿔줘! -->
-                <label for="name">이름:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">이메일:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="subject">제목:</label>
-                <input type="text" id="subject" name="subject">
-
-                <label for="message">메시지:</label>
-                <textarea id="message" name="message" rows="6" required></textarea>
-
-                <button type="submit">메시지 보내기</button>
-            </form>
-        </section>
-    </main>
-
-    <!-- 푸터 영역 -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 데이브. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank" title="Blog"><i class="fas fa-blog"></i></a>
-                <!-- 필요하면 소셜 미디어 링크 더 추가해줘! -->
-            </div>
-        </div>
-    </footer>
+  <footer>
+    <p>&copy; 2025 재성 양. All rights reserved.</p>
+  </footer>
 </body>
 </html>
